@@ -9,5 +9,9 @@ Website [nghiemtientuan.github.io](https://nghiemtientuan.github.io)
 # 3. Install
 ```
 npm run start
-npm run build
+```
+
+# 4. Deploy
+```
+npm run deploy
 ```
