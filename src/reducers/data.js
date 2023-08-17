@@ -17,12 +17,12 @@ const mappingData = (responseData) => {
   return {
     slides,
     categories,
-    posts
-  }
+    posts,
+  };
 };
 
 const getData = (responseData, key) => {
-  const keyData = responseData.find(items => {
+  const keyData = responseData.find((items) => {
     if (items.length > 0) {
       const k = items[0].split(parseKey).shift();
 
@@ -37,20 +37,20 @@ const getData = (responseData, key) => {
     const k = keyData.shift().split(parseKey).pop();
 
     if (k === 'json') {
-      return keyData.map(data => {
+      return keyData.map((data) => {
         try {
           return JSON.parse(data);
         } catch (_e) {
           return null;
         }
-      })
+      });
     }
 
     return keyData;
   }
 
   return [];
-}
+};
 
 let myReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -62,8 +62,8 @@ let myReducer = (state = initialState, action) => {
         ...data,
       };
     default:
-      return {...state};
+      return { ...state };
   }
-}
+};
 
 export default myReducer;

@@ -14,9 +14,7 @@ const AppContainer = () => {
     dispatch(fetchMasterDataRequest());
   }, []);
 
-  return (
-    <RoutersList />
-  )
+  return <RoutersList />;
 };
 
 export default AppContainer;

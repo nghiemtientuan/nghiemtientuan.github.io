@@ -13,19 +13,19 @@ function* onFetchMasterData() {
   const result = yield call(getMasterDataApi);
 
   if (result && result.status === HTTP_STATUS.http_200) {
-    const {data = {}} = result;
-    const {values = []} = data;
+    const { data = {} } = result;
+    const { values = [] } = data;
     yield put(fetchMasterDataRequestSuccess(values));
 
     return;
   }
 
-  console.error('[ERROR] onFetchMasterData error')
+  console.error('[ERROR] onFetchMasterData error');
 }
 
 // Call APIs
 const getMasterDataApi = () => {
   return callApi()
-    .then(response => response)
-    .catch(error => error.response);
-}
+    .then((response) => response)
+    .catch((error) => error.response);
+};

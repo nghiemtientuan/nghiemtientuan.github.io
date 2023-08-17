@@ -8,11 +8,11 @@ import translationVI from '../locales/vi/translation';
 // the translations
 const resources = {
   en: {
-    translation: translationEN
+    translation: translationEN,
   },
   vi: {
-    translation: translationVI
-  }
+    translation: translationVI,
+  },
 };
 
 i18n
@@ -23,8 +23,8 @@ i18n
     fallbackLng: 'vi',
     debug: true,
     interpolation: {
-      escapeValue: false // not needed for react as it escapes by default
-    }
+      escapeValue: false, // not needed for react as it escapes by default
+    },
   });
 
 export default i18n;

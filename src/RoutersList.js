@@ -15,7 +15,7 @@ const RoutersList = () => {
         <Route path={pathUrl.user.HomePage} exact element={<HomePage />} />
 
         {/* Redirect to base if the page cannot be found */}
-        <Route path='*' exact element={<NotFoundPage />} />
+        <Route path="*" exact element={<NotFoundPage />} />
       </Routes>
     </Router>
   );

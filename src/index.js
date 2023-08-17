@@ -21,19 +21,17 @@ import rootSaga from './saga/rootSaga';
 import i18n from './locales/i18n';
 
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(myReducer, composeWithDevTools(
-  applyMiddleware(sagaMiddleware)
-));
+const store = createStore(myReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));
 sagaMiddleware.run(rootSaga);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <I18nextProvider i18n={i18n}>
-    <Provider store={ store }>
+    <Provider store={store}>
       <AppContainer />
 
       <ToastContainer
-        position='top-right'
+        position="top-right"
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop
@@ -42,7 +40,7 @@ root.render(
         pauseOnFocusLoss
         draggable={false}
         pauseOnHover
-        theme='light'
+        theme="light"
       />
     </Provider>
   </I18nextProvider>

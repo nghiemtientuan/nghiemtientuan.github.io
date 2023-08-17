@@ -1,5 +1,5 @@
 export const API_URL = process.env.REACT_APP_API_ENDPOINT;
 
 export const APP = {
-  name: 'TinHocLapTrinh123'
-}
+  name: 'TinHocLapTrinh123',
+};

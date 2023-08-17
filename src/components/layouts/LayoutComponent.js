@@ -6,7 +6,7 @@ import FooterComponent from './FooterComponent';
 
 const LayoutComponent = (props) => {
   return (
-    <div className='container'>
+    <div className="container">
       <HeaderComponent />
 
       {props.children}
