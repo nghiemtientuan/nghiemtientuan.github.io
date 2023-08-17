@@ -1,37 +1,43 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+
+// Utils
+import { APP } from '../../constants/Config';
 
 const HeaderComponent = (_props) => {
+  const {t} = useTranslation();
+
   return (
-    <nav class="uk-navbar-container uk-letter-spacing-small">
-      <div class="uk-container">
-        <div class="uk-position-z-index" data-uk-navbar>
-          <div class="uk-navbar-left">
-            <a class="uk-navbar-item uk-logo" href="index.html">Kocina</a>
-            <ul class="uk-navbar-nav uk-visible@m uk-margin-large-left">
-              <li class="uk-active"><a href="index.html">Home</a></li>
+    <nav className="uk-navbar-container uk-letter-spacing-small">
+      <div className="uk-container">
+        <div className="uk-position-z-index" data-uk-navbar>
+          <div className="uk-navbar-left">
+            <a className="uk-navbar-item uk-logo" href="index.html">{APP.name}</a>
+            <ul className="uk-navbar-nav uk-visible@m uk-margin-large-left">
+              <li className="uk-active"><a href="index.html">{ t('header.menus.home') }</a></li>
               <li ><a href="recipe.html">Recipe</a></li>
               <li ><a href="search.html">Search</a></li>
               <li ><a href="contact.html">Contact</a></li>
             </ul>
           </div>
 
-          <div class="uk-navbar-right">
+          <div className="uk-navbar-right">
             <div>
-              <a class="uk-navbar-toggle" data-uk-search-icon href="#"></a>
-              <div class="uk-drop uk-background-default" data-uk-drop="mode: click; pos: left-center; offset: 0">
-                <form class="uk-search uk-search-navbar uk-width-1-1">
-                  <input class="uk-search-input uk-text-demi-bold" type="search" placeholder="Search..." autofocus />
+              <a className="uk-navbar-toggle" data-uk-search-icon href="#"></a>
+              <div className="uk-drop uk-background-default" data-uk-drop="mode: click; pos: left-center; offset: 0">
+                <form className="uk-search uk-search-navbar uk-width-1-1">
+                  <input className="uk-search-input uk-text-demi-bold" type="search" placeholder="Search..." autoFocus />
                 </form>
               </div>
             </div>
 
-            <ul class="uk-navbar-nav uk-visible@m">
+            <ul className="uk-navbar-nav uk-visible@m">
               <li ><a href="sign-in.html">Sign In</a></li>
             </ul>
-            <div class="uk-navbar-item">
-              <div><a class="uk-button uk-button-primary" href="sign-up.html">Sign Up</a></div>
+            <div className="uk-navbar-item">
+              <div><a className="uk-button uk-button-primary" href="sign-up.html">Sign Up</a></div>
             </div>          
-            <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas" data-uk-toggle>
+            <a className="uk-navbar-toggle uk-hidden@m" href="#offcanvas" data-uk-toggle>
               <span data-uk-navbar-toggle-icon></span>
             </a>
           </div>

@@ -11,8 +11,8 @@ const HomePage = (_props) => {
     <LayoutComponent>
       <SliderComponent />
 
-      <div class="uk-section uk-section-default">
-        <div class="uk-container">
+      <div className="uk-section uk-section-default">
+        <div className="uk-container">
           <div data-uk-grid>
             <CategoriesComponent />
 

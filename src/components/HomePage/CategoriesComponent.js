@@ -2,13 +2,13 @@ import React from 'react';
 
 const CategoriesComponent = (_props) => {
   return (
-    <div class="uk-width-1-4@m sticky-container">
+    <div className="uk-width-1-4@m sticky-container">
       <div data-uk-sticky="offset: 100; bottom: true; media: @m;">
         <h2>Recipes</h2>
-        <ul class="uk-nav-default uk-nav-parent-icon uk-nav-filter uk-margin-medium-top" data-uk-nav>
-          <li class="uk-parent uk-open">
+        <ul className="uk-nav-default uk-nav-parent-icon uk-nav-filter uk-margin-medium-top" data-uk-nav>
+          <li className="uk-parent uk-open">
             <a href="#">Dish Type</a>
-            <ul class="uk-nav-sub">
+            <ul className="uk-nav-sub">
               <li><a href="#">Appetizers & Snacks</a></li>
               <li><a href="#">Bread Recipes</a></li>
               <li><a href="#">Cake Recipes</a></li>
@@ -23,9 +23,9 @@ const CategoriesComponent = (_props) => {
             </ul>
           </li>
 
-          <li class="uk-parent">
+          <li className="uk-parent">
             <a href="#">Meal Type</a>
-            <ul class="uk-nav-sub">
+            <ul className="uk-nav-sub">
               <li><a href="#">Breakfast and Brunch</a></li>
               <li><a href="#">Desserts</a></li>
               <li><a href="#">Dinners</a></li>
@@ -33,9 +33,9 @@ const CategoriesComponent = (_props) => {
             </ul>
           </li>
 
-          <li class="uk-parent">
+          <li className="uk-parent">
             <a href="#">Diet and Health</a>
-            <ul class="uk-nav-sub">
+            <ul className="uk-nav-sub">
               <li><a href="#">Diabetic</a></li>
               <li><a href="#">Gluten Free</a></li>
               <li><a href="#">High Fiber Recipes</a></li>
@@ -43,9 +43,9 @@ const CategoriesComponent = (_props) => {
             </ul>
           </li>
 
-          <li class="uk-parent">
+          <li className="uk-parent">
             <a href="#">World Cuisine</a>
-            <ul class="uk-nav-sub">
+            <ul className="uk-nav-sub">
               <li><a href="#">Chinese</a></li>
               <li><a href="#">Indian</a></li>
               <li><a href="#">Italian</a></li>
@@ -53,9 +53,9 @@ const CategoriesComponent = (_props) => {
             </ul>
           </li>
           
-          <li class="uk-parent">
+          <li className="uk-parent">
             <a href="#">Seasonal</a>
-            <ul class="uk-nav-sub">
+            <ul className="uk-nav-sub">
               <li><a href="#">Baby Shower</a></li>
               <li><a href="#">Birthday</a></li>
               <li><a href="#">Christmas</a></li>
