@@ -1,10 +1,13 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const CategoriesComponent = (_props) => {
+  const {t} = useTranslation();
+
   return (
     <div className="uk-width-1-4@m sticky-container">
       <div data-uk-sticky="offset: 100; bottom: true; media: @m;">
-        <h2>Recipes</h2>
+        <h2>{t('category.title')}</h2>
         <ul
           className="uk-nav-default uk-nav-parent-icon uk-nav-filter uk-margin-medium-top"
           data-uk-nav

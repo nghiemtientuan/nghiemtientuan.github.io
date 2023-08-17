@@ -6,5 +6,17 @@
   },
   "slides": {
     "register_now": "Đăng ký ngay"
+  },
+  "category": {
+    "title": "Chủ đề"
+  },
+  "messages": {
+
+  },
+  "validations": {
+
+  },
+  "errorMessage": {
+
   }
 }
