@@ -3,5 +3,8 @@
     "menus": {
       "home": "Trang chủ"
     }
+  },
+  "slides": {
+    "register_now": "Đăng ký ngay"
   }
 }
