@@ -1,42 +1,14 @@
 import * as Types from './../constants/ActionTypes';
 
-export const fetchTasksRequest = () => {
+export const fetchMasterDataRequest = () => {
   return {
-    type: Types.FETCH_TASKS
+    type: Types.FETCH_MASTER_DATA
   };
 }
 
-export const fetchTasksRequestSuccess = (tasks) => {
+export const fetchMasterDataRequestSuccess = (data) => {
   return {
-    type: Types.FETCH_TASKS_SUCCESS,
-    tasks
-  };
-}
-
-export const addTaskRequest = (task) => {
-  return {
-    type: Types.ADD_TASK,
-    task
-  };
-}
-
-export const addTaskRequestSuccess = (task) => {
-  return {
-    type: Types.ADD_TASK_SUCCESS,
-    task
-  };
-}
-
-export const deleteTaskRequest = (id) => {
-  return {
-    type: Types.DELETE_TASK,
-    id
-  };
-}
-
-export const deleteTaskRequestSuccess = (id) => {
-  return {
-    type: Types.DELETE_TASK_SUCCESS,
-    id
+    type: Types.FETCH_MASTER_DATA_SUCCESS,
+    data,
   };
 }

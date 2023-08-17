@@ -4,8 +4,18 @@ import { useTranslation } from 'react-i18next';
 // Utils
 import { APP } from '../../constants/Config';
 
+// Routers
+import { pathUrl } from '../../routes';
+
 const HeaderComponent = (_props) => {
   const {t} = useTranslation();
+
+  const menus = [
+    {
+      url: pathUrl.user.HomePage,
+      title: t('header.menus.home'),
+    },
+  ];
 
   return (
     <nav className="uk-navbar-container uk-letter-spacing-small">
@@ -14,10 +24,16 @@ const HeaderComponent = (_props) => {
           <div className="uk-navbar-left">
             <a className="uk-navbar-item uk-logo" href="index.html">{APP.name}</a>
             <ul className="uk-navbar-nav uk-visible@m uk-margin-large-left">
-              <li className="uk-active"><a href="index.html">{ t('header.menus.home') }</a></li>
-              <li ><a href="recipe.html">Recipe</a></li>
-              <li ><a href="search.html">Search</a></li>
-              <li ><a href="contact.html">Contact</a></li>
+              {
+                menus.map((menu, menuIndex) => (
+                  <li key={menuIndex} className="uk-active">
+                    <a href={menu.url}>{menu.title}</a>
+                  </li>
+                ))
+              }
+              <li><a href="recipe.html">Recipe</a></li>
+              <li><a href="search.html">Search</a></li>
+              <li><a href="contact.html">Contact</a></li>
             </ul>
           </div>
 

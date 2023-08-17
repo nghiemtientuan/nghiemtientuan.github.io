@@ -1,6 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 const SliderComponent = (_props) => {
+  const slides = useSelector((state) => state.data.slides);
+  console.log(slides, 'slides')
+
   return (
     <div className="uk-container">
       <div className="uk-border-rounded-large uk-background-top-center uk-background-cover
