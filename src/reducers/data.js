@@ -6,6 +6,10 @@ let initialState = {
   slides: [],
   categories: [],
   posts: [],
+  courses: [],
+  activities: [],
+  achievements: [],
+  tools: [],
 };
 
 const mappingData = (responseData) => {
@@ -13,11 +17,19 @@ const mappingData = (responseData) => {
   const slides = getData(responseData, 'slides');
   const categories = getData(responseData, 'categories');
   const posts = getData(responseData, 'posts');
+  const courses = getData(responseData, 'courses');
+  const activities = getData(responseData, 'activities');
+  const achievements = getData(responseData, 'achievements');
+  const tools = getData(responseData, 'tools');
 
   return {
     slides,
     categories,
     posts,
+    courses,
+    activities,
+    achievements,
+    tools,
   };
 };
 

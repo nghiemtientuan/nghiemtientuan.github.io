@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 // Routers
 import { pathUrl } from '../../routes';
@@ -19,12 +20,12 @@ const CategoriesComponent = (_props) => {
         >
           {categories.map((category, categoryIndex) => (
             <li className={category?.childs?.length ? 'uk-parent' : ''} key={categoryIndex}>
-              <a href={pathUrl.user.Categories + category?.id}>{category?.name}</a>
+              <Link to={pathUrl.user.Categories + category?.id}>{category?.name}</Link>
               {category?.childs?.length ? (
                 <ul className="uk-nav-sub">
                   {category?.childs.map((child, childIndex) => (
                     <li key={childIndex}>
-                      <a href={pathUrl.user.Categories + child?.id}>{child?.name}</a>
+                      <Link to={pathUrl.user.Categories + child?.id}>{child?.name}</Link>
                     </li>
                   ))}
                 </ul>

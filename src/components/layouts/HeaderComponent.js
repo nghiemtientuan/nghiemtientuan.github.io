@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 // Utils
 import { APP } from '../../constants/Config';
@@ -15,6 +16,26 @@ const HeaderComponent = (_props) => {
       url: pathUrl.user.HomePage,
       title: t('header.menus.home'),
     },
+    {
+      url: pathUrl.user.Courses,
+      title: t('header.menus.courses'),
+    },
+    {
+      url: pathUrl.user.Activities,
+      title: t('header.menus.activities'),
+    },
+    {
+      url: pathUrl.user.Achievements,
+      title: t('header.menus.achievements'),
+    },
+    {
+      url: pathUrl.user.Tools,
+      title: t('header.menus.tools'),
+    },
+    {
+      url: pathUrl.user.Contact,
+      title: t('header.menus.contact'),
+    },
   ];
 
   return (
@@ -22,24 +43,15 @@ const HeaderComponent = (_props) => {
       <div className="uk-container">
         <div className="uk-position-z-index" data-uk-navbar>
           <div className="uk-navbar-left">
-            <a className="uk-navbar-item uk-logo" href="index.html">
+            <Link className="uk-navbar-item uk-logo" to={pathUrl.user.HomePage}>
               {APP.name}
-            </a>
+            </Link>
             <ul className="uk-navbar-nav uk-visible@m uk-margin-large-left">
               {menus.map((menu, menuIndex) => (
                 <li key={menuIndex} className="uk-active">
-                  <a href={menu.url}>{menu.title}</a>
+                  <Link to={menu.url}>{menu.title}</Link>
                 </li>
               ))}
-              <li>
-                <a href="recipe.html">Recipe</a>
-              </li>
-              <li>
-                <a href="search.html">Search</a>
-              </li>
-              <li>
-                <a href="contact.html">Contact</a>
-              </li>
             </ul>
           </div>
 
@@ -61,12 +73,12 @@ const HeaderComponent = (_props) => {
               </div>
             </div>
 
-            <ul className="uk-navbar-nav uk-visible@m">
+            <ul className="uk-navbar-nav uk-visible@m uk-hidden">
               <li>
                 <a href="sign-in.html">Sign In</a>
               </li>
             </ul>
-            <div className="uk-navbar-item">
+            <div className="uk-navbar-item uk-hidden">
               <div>
                 <a className="uk-button uk-button-primary" href="sign-up.html">
                   Sign Up
