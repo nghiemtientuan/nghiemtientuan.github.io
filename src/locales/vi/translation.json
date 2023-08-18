@@ -8,15 +8,9 @@
     "register_now": "Đăng ký ngay"
   },
   "category": {
-    "title": "Chủ đề"
+    "title": "Các chủ đề"
   },
-  "messages": {
-
-  },
-  "validations": {
-
-  },
-  "errorMessage": {
-
-  }
+  "messages": {},
+  "validations": {},
+  "errorMessage": {}
 }

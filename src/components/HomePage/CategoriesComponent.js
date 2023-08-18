@@ -1,8 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+
+// Routers
+import { pathUrl } from '../../routes';
 
 const CategoriesComponent = (_props) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
+  const categories = useSelector((state) => state.data.categories);
 
   return (
     <div className="uk-width-1-4@m sticky-container">
@@ -12,116 +17,20 @@ const CategoriesComponent = (_props) => {
           className="uk-nav-default uk-nav-parent-icon uk-nav-filter uk-margin-medium-top"
           data-uk-nav
         >
-          <li className="uk-parent uk-open">
-            <a href="#">Dish Type</a>
-            <ul className="uk-nav-sub">
-              <li>
-                <a href="#">Appetizers & Snacks</a>
-              </li>
-              <li>
-                <a href="#">Bread Recipes</a>
-              </li>
-              <li>
-                <a href="#">Cake Recipes</a>
-              </li>
-              <li>
-                <a href="#">Candy and Fudge</a>
-              </li>
-              <li>
-                <a href="#">Casserole Recipes</a>
-              </li>
-              <li>
-                <a href="#">Christmas Cookies</a>
-              </li>
-              <li>
-                <a href="#">Cocktail Recipes</a>
-              </li>
-              <li>
-                <a href="#">Main Dishes</a>
-              </li>
-              <li>
-                <a href="#">Pasta Recipes</a>
-              </li>
-              <li>
-                <a href="#">Pie Recipes</a>
-              </li>
-              <li>
-                <a href="#">Sandwiches</a>
-              </li>
-            </ul>
-          </li>
-
-          <li className="uk-parent">
-            <a href="#">Meal Type</a>
-            <ul className="uk-nav-sub">
-              <li>
-                <a href="#">Breakfast and Brunch</a>
-              </li>
-              <li>
-                <a href="#">Desserts</a>
-              </li>
-              <li>
-                <a href="#">Dinners</a>
-              </li>
-              <li>
-                <a href="#">Lunch</a>
-              </li>
-            </ul>
-          </li>
-
-          <li className="uk-parent">
-            <a href="#">Diet and Health</a>
-            <ul className="uk-nav-sub">
-              <li>
-                <a href="#">Diabetic</a>
-              </li>
-              <li>
-                <a href="#">Gluten Free</a>
-              </li>
-              <li>
-                <a href="#">High Fiber Recipes</a>
-              </li>
-              <li>
-                <a href="#">Low Calorie</a>
-              </li>
-            </ul>
-          </li>
-
-          <li className="uk-parent">
-            <a href="#">World Cuisine</a>
-            <ul className="uk-nav-sub">
-              <li>
-                <a href="#">Chinese</a>
-              </li>
-              <li>
-                <a href="#">Indian</a>
-              </li>
-              <li>
-                <a href="#">Italian</a>
-              </li>
-              <li>
-                <a href="#">Mexican</a>
-              </li>
-            </ul>
-          </li>
-
-          <li className="uk-parent">
-            <a href="#">Seasonal</a>
-            <ul className="uk-nav-sub">
-              <li>
-                <a href="#">Baby Shower</a>
-              </li>
-              <li>
-                <a href="#">Birthday</a>
-              </li>
-              <li>
-                <a href="#">Christmas</a>
-              </li>
-              <li>
-                <a href="#">Halloween</a>
-              </li>
-            </ul>
-          </li>
+          {categories.map((category, categoryIndex) => (
+            <li className={category?.childs?.length ? 'uk-parent' : ''} key={categoryIndex}>
+              <a href={pathUrl.user.Categories + category?.id}>{category?.name}</a>
+              {category?.childs?.length ? (
+                <ul className="uk-nav-sub">
+                  {category?.childs.map((child, childIndex) => (
+                    <li key={childIndex}>
+                      <a href={pathUrl.user.Categories + child?.id}>{child?.name}</a>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </li>
+          ))}
         </ul>
       </div>
     </div>
