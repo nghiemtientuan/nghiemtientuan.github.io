@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { MenuItem, Select } from '@mui/material';
 
 // Utils
 import { APP } from '../../constants/Config';
+import { COOKIE_KEYS, getCookie, setCookie } from '../../utils/cookie';
 
 // Routers
 import { pathUrl } from '../../routes';
 
+const langs = [
+  {
+    label: 'VN',
+    value: 'vn',
+  },
+  {
+    label: 'EN',
+    value: 'en',
+  },
+];
+
 const HeaderComponent = (_props) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const menus = [
     {
@@ -37,6 +50,20 @@ const HeaderComponent = (_props) => {
       title: t('header.menus.contact'),
     },
   ];
+
+  // states
+  const [langState, setLangState] = useState(getCookie(COOKIE_KEYS.LANG) ?? langs[0].value);
+
+  // effects
+  useEffect(() => {
+    i18n.changeLanguage(langState);
+    setCookie(COOKIE_KEYS.LANG, langState);
+  }, [langState]);
+
+  const handleChangeLang = (event) => {
+    const {value} = event.target;
+    setLangState(value);
+  };
 
   return (
     <nav className="uk-navbar-container uk-letter-spacing-small">
@@ -72,6 +99,24 @@ const HeaderComponent = (_props) => {
                 </form>
               </div>
             </div>
+
+            <ul className="uk-navbar-nav uk-visible@m">
+              <li>
+                <Select
+                  variant="standard"
+                  disableUnderline
+                  displayEmpty
+                  value={langState}
+                  onChange={handleChangeLang}
+                >
+                  {
+                    langs.map((lang, langIndex) => (
+                      <MenuItem key={langIndex} value={lang.value}>{lang.label}</MenuItem>
+                    ))
+                  }
+                </Select>
+              </li>
+            </ul>
 
             <ul className="uk-navbar-nav uk-visible@m uk-hidden">
               <li>
