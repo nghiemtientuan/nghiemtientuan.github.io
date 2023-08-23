@@ -16,6 +16,14 @@
   "category": {
     "title": "Các chủ đề"
   },
+  "sortOptions": {
+    "sortBy": "Sắp xếp theo: ",
+    "latest": "Muộn nhất",
+    "earliest": "Sớm nhất"
+  },
+  "inputs": {
+    "search_place_holder": "Tìm kiếm"
+  },
   "messages": {},
   "validations": {},
   "errorMessage": {}

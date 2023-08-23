@@ -7,13 +7,14 @@ import { pathUrl } from './routes';
 // pages
 import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
+import CoursesPage from './pages/CoursesPage';
 
 const RoutersList = () => {
   return (
     <Router>
       <Routes>
         <Route path={pathUrl.user.HomePage} exact element={<HomePage />} />
-        <Route path={pathUrl.user.Courses} exact element={<></>} />
+        <Route path={pathUrl.user.Courses} exact element={<CoursesPage />} />
         <Route path={pathUrl.user.Activities} exact element={<></>} />
         <Route path={pathUrl.user.Achievements} exact element={<></>} />
         <Route path={pathUrl.user.Tools} exact element={<></>} />
