@@ -7,14 +7,16 @@ import { APP } from '../../constants/Config';
 import { pathUrl } from '../../routes';
 
 const FooterComponent = (_props) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <footer className="uk-section uk-section-default">
       <div className="uk-container uk-text-secondary uk-text-500">
         <div className="uk-child-width-1-2@s" data-uk-grid>
           <div>
-            <Link to={pathUrl.user.HomePage} className="uk-logo">{APP.name}</Link>
+            <Link to={pathUrl.user.HomePage} className="uk-logo">
+              {APP.name}
+            </Link>
           </div>
 
           <div className="uk-flex uk-flex-middle uk-flex-right@s">

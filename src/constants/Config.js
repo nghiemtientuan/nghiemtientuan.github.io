@@ -7,4 +7,7 @@ export const APP = {
     facebook: '',
     github: '',
   },
+  pagination: {
+    default: 15,
+  },
 };

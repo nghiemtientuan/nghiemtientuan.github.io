@@ -61,7 +61,7 @@ const HeaderComponent = (_props) => {
   }, [langState]);
 
   const handleChangeLang = (event) => {
-    const {value} = event.target;
+    const { value } = event.target;
     setLangState(value);
   };
 
@@ -109,11 +109,11 @@ const HeaderComponent = (_props) => {
                   value={langState}
                   onChange={handleChangeLang}
                 >
-                  {
-                    langs.map((lang, langIndex) => (
-                      <MenuItem key={langIndex} value={lang.value}>{lang.label}</MenuItem>
-                    ))
-                  }
+                  {langs.map((lang, langIndex) => (
+                    <MenuItem key={langIndex} value={lang.value}>
+                      {lang.label}
+                    </MenuItem>
+                  ))}
                 </Select>
               </li>
             </ul>
