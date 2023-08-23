@@ -21,6 +21,9 @@
     "latest": "Muộn nhất",
     "earliest": "Sớm nhất"
   },
+  "author": {
+    "mrtuan": "Mr. Tuan"
+  },
   "inputs": {
     "search_place_holder": "Tìm kiếm"
   },

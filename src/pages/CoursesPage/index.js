@@ -1,5 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Lazyload from 'react-lazyload';
 
 // components
 import LayoutComponent from '../../components/layouts/LayoutComponent';
@@ -10,7 +13,6 @@ const EARLIEST_VALUE = 'earliest';
 
 const CoursesPage = (_props) => {
   const {t} = useTranslation();
-
   const sortOptions = [
     {
       name: t('sortOptions.sortBy') + t('sortOptions.latest'),
@@ -21,6 +23,29 @@ const CoursesPage = (_props) => {
       value: EARLIEST_VALUE,
     },
   ];
+  const courses = useSelector((state) => state.data.courses);
+
+  // states
+  const [keyWord, setKeyWord] = useState('');
+  const [sort, setSort] = useState(LATEST_VALUE);
+
+  const handleChangeSort = (e) => {
+    setSort(e?.target?.value);
+  };
+
+  const handleChangeKeyword = (e) => {
+    setKeyWord(e?.target?.value);
+  };
+
+  let filterCourses = courses;
+  if (keyWord) {
+    filterCourses = filterCourses.filter((courseTmp) => {
+      return courseTmp.name.includes(keyWord) || courseTmp.name_en.includes(keyWord);
+    });
+  }
+  if (sort === EARLIEST_VALUE) {
+    filterCourses = courses.reverse();
+  }
 
   return (
     <LayoutComponent>
@@ -34,12 +59,18 @@ const CoursesPage = (_props) => {
                   className="uk-search-input uk-text-small uk-border-rounded uk-form-large"
                   type="search"
                   placeholder={t('inputs.search_place_holder')}
+                  value={keyWord}
+                  onChange={handleChangeKeyword}
                 />
               </form>
             </div>
 
             <div className="uk-width-1-2@m uk-text-right@m">
-              <select className="uk-select uk-select-light uk-width-auto uk-border-pill uk-select-muted">
+              <select
+                value={sort}
+                onChange={handleChangeSort}
+                className="uk-select uk-select-light uk-width-auto uk-border-pill uk-select-muted"
+              >
                 {
                   sortOptions.map((option, optionIndex) => (
                     <option key={optionIndex}>{option.name}</option>
@@ -49,307 +80,37 @@ const CoursesPage = (_props) => {
             </div>
           </div>
 
-          <div className="uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-margin-medium-top" data-uk-grid>
-            <div>
-              <div
-                className="uk-card">
-                <div className="uk-card-media-top uk-inline uk-light">
-                  <img className="uk-border-rounded-medium" src="https://via.placeholder.com/300x160" alt="Course Title" />
-                    <div className="uk-position-cover uk-card-overlay uk-border-rounded-medium"></div>
-                    <div className="uk-position-xsmall uk-position-top-right">
-                      <a href="#" className="uk-icon-button uk-like uk-position-z-index uk-position-relative"
-                         data-uk-icon="heart"></a>
+          <div
+            className="uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-margin-medium-top"
+            data-uk-grid
+          >
+            {
+              filterCourses.map((course, courseIndex) => (
+                <div key={courseIndex}>
+                  <div
+                    className="uk-card">
+                    <div className="uk-card-media-top uk-inline uk-light">
+                      <Lazyload>
+                        <img className="uk-border-rounded-medium" src={course?.thumbnail} alt={course?.name} />
+                      </Lazyload>
+                      <div className="uk-position-cover uk-card-overlay uk-border-rounded-medium"></div>
                     </div>
-                </div>
-                <div>
-                  <h3 className="uk-card-title uk-text-500 uk-margin-small-bottom uk-margin-top">Chef John's Turkey Sloppy Joes</h3>
-                  <div className="uk-text-xsmall uk-text-muted" data-uk-grid>
-                    <div className="uk-width-auto uk-flex uk-flex-middle">
-                      <span className="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.7"></span>
-                      <span className="uk-margin-xsmall-left">5.0</span>
-                      <span>(73)</span>
+
+                    <div>
+                      <h3 className="uk-card-title uk-text-500 uk-margin-small-bottom uk-margin-top">{course?.name}</h3>
+                      <div className="uk-text-xsmall uk-text-muted" data-uk-grid>
+                        <div className="uk-width-auto uk-flex uk-flex-middle">
+                          <span className="uk-margin-xsmall-left uk-margin-remove-left">{course?.name_en}</span>
+                        </div>
+                        <div className="uk-width-expand uk-text-right">{t('author.mrtuan')}</div>
+                      </div>
                     </div>
-                    <div className="uk-width-expand uk-text-right">by Tuntun</div>
+
+                    <Link to="recipe.html" className="uk-position-cover" />
                   </div>
                 </div>
-                <a href="recipe.html" className="uk-position-cover"></a>
-              </div>
-            </div>
-            <div>
-              <div
-                className="uk-card">
-                <div className="uk-card-media-top uk-inline uk-light">
-                  <img className="uk-border-rounded-medium" src="https://via.placeholder.com/300x160" alt="Course Title"/>
-                    <div className="uk-position-cover uk-card-overlay uk-border-rounded-medium"></div>
-                    <div className="uk-position-xsmall uk-position-top-right">
-                      <a href="#" className="uk-icon-button uk-like uk-position-z-index uk-position-relative"
-                         data-uk-icon="heart"></a>
-                    </div>
-                </div>
-                <div>
-                  <h3 className="uk-card-title uk-text-500 uk-margin-small-bottom uk-margin-top">Brown Sugar Meatloaf</h3>
-                  <div className="uk-text-xsmall uk-text-muted" data-uk-grid>
-                    <div className="uk-width-auto uk-flex uk-flex-middle">
-                      <span className="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.7"></span>
-                      <span className="uk-margin-xsmall-left">3.0</span>
-                      <span>(94)</span>
-                    </div>
-                    <div className="uk-width-expand uk-text-right">by Danial Caleem</div>
-                  </div>
-                </div>
-                <a href="recipe.html" className="uk-position-cover"></a>
-              </div>
-            </div>
-            <div>
-              <div
-                className="uk-card">
-                <div className="uk-card-media-top uk-inline uk-light">
-                  <img className="uk-border-rounded-medium" src="https://via.placeholder.com/300x160" alt="Course Title"/>
-                    <div className="uk-position-cover uk-card-overlay uk-border-rounded-medium"></div>
-                    <div className="uk-position-xsmall uk-position-top-right">
-                      <a href="#" className="uk-icon-button uk-like uk-position-z-index uk-position-relative"
-                         data-uk-icon="heart"></a>
-                    </div>
-                </div>
-                <div>
-                  <h3 className="uk-card-title uk-text-500 uk-margin-small-bottom uk-margin-top">Awesome Slow Cooker Pot Roast</h3>
-                  <div className="uk-text-xsmall uk-text-muted" data-uk-grid>
-                    <div className="uk-width-auto uk-flex uk-flex-middle">
-                      <span className="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.7"></span>
-                      <span className="uk-margin-xsmall-left">4.5</span>
-                      <span>(153)</span>
-                    </div>
-                    <div className="uk-width-expand uk-text-right">by Janet Small</div>
-                  </div>
-                </div>
-                <a href="recipe.html" className="uk-position-cover"></a>
-              </div>
-            </div>
-            <div>
-              <div
-                className="uk-card">
-                <div className="uk-card-media-top uk-inline uk-light">
-                  <img className="uk-border-rounded-medium" src="https://via.placeholder.com/300x160" alt="Course Title"/>
-                    <div className="uk-position-cover uk-card-overlay uk-border-rounded-medium"></div>
-                    <div className="uk-position-xsmall uk-position-top-right">
-                      <a href="#" className="uk-icon-button uk-like uk-position-z-index uk-position-relative"
-                         data-uk-icon="heart"></a>
-                    </div>
-                </div>
-                <div>
-                  <h3 className="uk-card-title uk-text-500 uk-margin-small-bottom uk-margin-top">Broiled Tilapia Parmesan</h3>
-                  <div className="uk-text-xsmall uk-text-muted" data-uk-grid>
-                    <div className="uk-width-auto uk-flex uk-flex-middle">
-                      <span className="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.7"></span>
-                      <span className="uk-margin-xsmall-left">5.0</span>
-                      <span>(524)</span>
-                    </div>
-                    <div className="uk-width-expand uk-text-right">by Aleaxa Dorchest</div>
-                  </div>
-                </div>
-                <a href="recipe.html" className="uk-position-cover"></a>
-              </div>
-            </div>
-            <div>
-              <div
-                className="uk-card">
-                <div className="uk-card-media-top uk-inline uk-light">
-                  <img className="uk-border-rounded-medium" src="https://via.placeholder.com/300x160" alt="Course Title"/>
-                    <div className="uk-position-cover uk-card-overlay uk-border-rounded-medium"></div>
-                    <div className="uk-position-xsmall uk-position-top-right">
-                      <a href="#" className="uk-icon-button uk-like uk-position-z-index uk-position-relative"
-                         data-uk-icon="heart"></a>
-                    </div>
-                </div>
-                <div>
-                  <h3 className="uk-card-title uk-text-500 uk-margin-small-bottom uk-margin-top">Baked Teriyaki Chicken</h3>
-                  <div className="uk-text-xsmall uk-text-muted" data-uk-grid>
-                    <div className="uk-width-auto uk-flex uk-flex-middle">
-                      <span className="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.7"></span>
-                      <span className="uk-margin-xsmall-left">4.6</span>
-                      <span>(404)</span>
-                    </div>
-                    <div className="uk-width-expand uk-text-right">by Ben Kaller</div>
-                  </div>
-                </div>
-                <a href="recipe.html" className="uk-position-cover"></a>
-              </div>
-            </div>
-            <div>
-              <div
-                className="uk-card">
-                <div className="uk-card-media-top uk-inline uk-light">
-                  <img className="uk-border-rounded-medium" src="https://via.placeholder.com/300x160" alt="Course Title"/>
-                    <div className="uk-position-cover uk-card-overlay uk-border-rounded-medium"></div>
-                    <div className="uk-position-xsmall uk-position-top-right">
-                      <a href="#" className="uk-icon-button uk-like uk-position-z-index uk-position-relative"
-                         data-uk-icon="heart"></a>
-                    </div>
-                </div>
-                <div>
-                  <h3 className="uk-card-title uk-text-500 uk-margin-small-bottom uk-margin-top">Zesty Slow Cooker Chicken</h3>
-                  <div className="uk-text-xsmall uk-text-muted" data-uk-grid>
-                    <div className="uk-width-auto uk-flex uk-flex-middle">
-                      <span className="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.7"></span>
-                      <span className="uk-margin-xsmall-left">3.9</span>
-                      <span>(629)</span>
-                    </div>
-                    <div className="uk-width-expand uk-text-right">by Sam Brown</div>
-                  </div>
-                </div>
-                <a href="recipe.html" className="uk-position-cover"></a>
-              </div>
-            </div>
-            <div>
-              <div
-                className="uk-card">
-                <div className="uk-card-media-top uk-inline uk-light">
-                  <img className="uk-border-rounded-medium" src="https://via.placeholder.com/300x160" alt="Course Title"/>
-                    <div className="uk-position-cover uk-card-overlay uk-border-rounded-medium"></div>
-                    <div className="uk-position-xsmall uk-position-top-right">
-                      <a href="#" className="uk-icon-button uk-like uk-position-z-index uk-position-relative"
-                         data-uk-icon="heart"></a>
-                    </div>
-                </div>
-                <div>
-                  <h3 className="uk-card-title uk-text-500 uk-margin-small-bottom uk-margin-top">Rosemary Ranch Chicken Kabobs</h3>
-                  <div className="uk-text-xsmall uk-text-muted" data-uk-grid>
-                    <div className="uk-width-auto uk-flex uk-flex-middle">
-                      <span className="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.7"></span>
-                      <span className="uk-margin-xsmall-left">3.6</span>
-                      <span>(149)</span>
-                    </div>
-                    <div className="uk-width-expand uk-text-right">by Theresa Samuel</div>
-                  </div>
-                </div>
-                <a href="recipe.html" className="uk-position-cover"></a>
-              </div>
-            </div>
-            <div>
-              <div
-                className="uk-card">
-                <div className="uk-card-media-top uk-inline uk-light">
-                  <img className="uk-border-rounded-medium" src="https://via.placeholder.com/300x160" alt="Course Title"/>
-                    <div className="uk-position-cover uk-card-overlay uk-border-rounded-medium"></div>
-                    <div className="uk-position-xsmall uk-position-top-right">
-                      <a href="#" className="uk-icon-button uk-like uk-position-z-index uk-position-relative"
-                         data-uk-icon="heart"></a>
-                    </div>
-                </div>
-                <div>
-                  <h3 className="uk-card-title uk-text-500 uk-margin-small-bottom uk-margin-top">Slow Cooker Pulled Pork</h3>
-                  <div className="uk-text-xsmall uk-text-muted" data-uk-grid>
-                    <div className="uk-width-auto uk-flex uk-flex-middle">
-                      <span className="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.7"></span>
-                      <span className="uk-margin-xsmall-left">2.9</span>
-                      <span>(309)</span>
-                    </div>
-                    <div className="uk-width-expand uk-text-right">by Adam Brown</div>
-                  </div>
-                </div>
-                <a href="recipe.html" className="uk-position-cover"></a>
-              </div>
-            </div>
-            <div>
-              <div
-                className="uk-card">
-                <div className="uk-card-media-top uk-inline uk-light">
-                  <img className="uk-border-rounded-medium" src="https://via.placeholder.com/300x160" alt="Course Title"/>
-                    <div className="uk-position-cover uk-card-overlay uk-border-rounded-medium"></div>
-                    <div className="uk-position-xsmall uk-position-top-right">
-                      <a href="#" className="uk-icon-button uk-like uk-position-z-index uk-position-relative"
-                         data-uk-icon="heart"></a>
-                    </div>
-                </div>
-                <div>
-                  <h3 className="uk-card-title uk-text-500 uk-margin-small-bottom uk-margin-top">Greek Lemon Chicken and Potatoes</h3>
-                  <div className="uk-text-xsmall uk-text-muted" data-uk-grid>
-                    <div className="uk-width-auto uk-flex uk-flex-middle">
-                      <span className="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.7"></span>
-                      <span className="uk-margin-xsmall-left">3.6</span>
-                      <span>(124)</span>
-                    </div>
-                    <div className="uk-width-expand uk-text-right">by Thomas Haller</div>
-                  </div>
-                </div>
-                <a href="recipe.html" className="uk-position-cover"></a>
-              </div>
-            </div>
-            <div>
-              <div
-                className="uk-card">
-                <div className="uk-card-media-top uk-inline uk-light">
-                  <img className="uk-border-rounded-medium" src="https://via.placeholder.com/300x160" alt="Course Title"/>
-                    <div className="uk-position-cover uk-card-overlay uk-border-rounded-medium"></div>
-                    <div className="uk-position-xsmall uk-position-top-right">
-                      <a href="#" className="uk-icon-button uk-like uk-position-z-index uk-position-relative"
-                         data-uk-icon="heart"></a>
-                    </div>
-                </div>
-                <div>
-                  <h3 className="uk-card-title uk-text-500 uk-margin-small-bottom uk-margin-top">Turkey Posole Dinner</h3>
-                  <div className="uk-text-xsmall uk-text-muted" data-uk-grid>
-                    <div className="uk-width-auto uk-flex uk-flex-middle">
-                      <span className="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.7"></span>
-                      <span className="uk-margin-xsmall-left">4.0</span>
-                      <span>(84)</span>
-                    </div>
-                    <div className="uk-width-expand uk-text-right">by Thomas Haller</div>
-                  </div>
-                </div>
-                <a href="recipe.html" className="uk-position-cover"></a>
-              </div>
-            </div>
-            <div>
-              <div
-                className="uk-card">
-                <div className="uk-card-media-top uk-inline uk-light">
-                  <img className="uk-border-rounded-medium" src="https://via.placeholder.com/300x160" alt="Course Title"/>
-                    <div className="uk-position-cover uk-card-overlay uk-border-rounded-medium"></div>
-                    <div className="uk-position-xsmall uk-position-top-right">
-                      <a href="#" className="uk-icon-button uk-like uk-position-z-index uk-position-relative"
-                         data-uk-icon="heart"></a>
-                    </div>
-                </div>
-                <div>
-                  <h3 className="uk-card-title uk-text-500 uk-margin-small-bottom uk-margin-top">Baked Macaroni and Cheese</h3>
-                  <div className="uk-text-xsmall uk-text-muted" data-uk-grid>
-                    <div className="uk-width-auto uk-flex uk-flex-middle">
-                      <span className="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.7"></span>
-                      <span className="uk-margin-xsmall-left">2.9</span>
-                      <span>(311)</span>
-                    </div>
-                    <div className="uk-width-expand uk-text-right">by Thomas Haller</div>
-                  </div>
-                </div>
-                <a href="recipe.html" className="uk-position-cover"></a>
-              </div>
-            </div>
-            <div>
-              <div
-                className="uk-card">
-                <div className="uk-card-media-top uk-inline uk-light">
-                  <img className="uk-border-rounded-medium" src="https://via.placeholder.com/300x160" alt="Course Title"/>
-                    <div className="uk-position-cover uk-card-overlay uk-border-rounded-medium"></div>
-                    <div className="uk-position-xsmall uk-position-top-right">
-                      <a href="#" className="uk-icon-button uk-like uk-position-z-index uk-position-relative"
-                         data-uk-icon="heart"></a>
-                    </div>
-                </div>
-                <div>
-                  <h3 class="uk-card-title uk-text-500 uk-margin-small-bottom uk-margin-top">Deb's General Tso's Chicken</h3>
-                  <div class="uk-text-xsmall uk-text-muted" data-uk-grid>
-                    <div class="uk-width-auto uk-flex uk-flex-middle">
-                      <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.7"></span>
-                      <span class="uk-margin-xsmall-left">4.4</span>
-                      <span>(68)</span>
-                    </div>
-                    <div class="uk-width-expand uk-text-right">by Thomas Haller</div>
-                  </div>
-                </div>
-                <a href="recipe.html" class="uk-position-cover"></a>
-              </div>
-            </div>
+              ))
+            }
           </div>
 
           <PaginationComponent />
