@@ -3,4 +3,8 @@ export const REACT_APP_URL_SLIDES = process.env.REACT_APP_URL_SLIDES;
 
 export const APP = {
   name: 'TinHocLapTrinh123',
+  socials: {
+    facebook: '',
+    github: '',
+  },
 };

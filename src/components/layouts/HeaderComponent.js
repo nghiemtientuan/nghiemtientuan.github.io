@@ -117,22 +117,6 @@ const HeaderComponent = (_props) => {
                 </Select>
               </li>
             </ul>
-
-            <ul className="uk-navbar-nav uk-visible@m uk-hidden">
-              <li>
-                <a href="sign-in.html">Sign In</a>
-              </li>
-            </ul>
-            <div className="uk-navbar-item uk-hidden">
-              <div>
-                <a className="uk-button uk-button-primary" href="sign-up.html">
-                  Sign Up
-                </a>
-              </div>
-            </div>
-            <a className="uk-navbar-toggle uk-hidden@m" href="#offcanvas" data-uk-toggle>
-              <span data-uk-navbar-toggle-icon></span>
-            </a>
           </div>
         </div>
       </div>

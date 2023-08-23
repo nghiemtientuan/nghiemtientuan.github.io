@@ -1,21 +1,27 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
+// Utils
+import { APP } from '../../constants/Config';
+import { pathUrl } from '../../routes';
 
 const FooterComponent = (_props) => {
+  const {t} = useTranslation();
+
   return (
     <footer className="uk-section uk-section-default">
       <div className="uk-container uk-text-secondary uk-text-500">
         <div className="uk-child-width-1-2@s" data-uk-grid>
           <div>
-            <a href="#" className="uk-logo">
-              Kocina
-            </a>
+            <Link to={pathUrl.user.HomePage} className="uk-logo">{APP.name}</Link>
           </div>
 
           <div className="uk-flex uk-flex-middle uk-flex-right@s">
             <div data-uk-grid className="uk-child-width-auto uk-grid-small">
               <div>
                 <a
-                  href="https://www.facebook.com/"
+                  href={APP.socials.facebook}
                   data-uk-icon="icon: facebook; ratio: 0.8"
                   className="uk-icon-button facebook"
                   target="_blank"
@@ -23,17 +29,9 @@ const FooterComponent = (_props) => {
               </div>
               <div>
                 <a
-                  href="https://www.instagram.com/"
-                  data-uk-icon="icon: instagram; ratio: 0.8"
-                  className="uk-icon-button instagram"
-                  target="_blank"
-                ></a>
-              </div>
-              <div>
-                <a
-                  href="mailto:info@blacompany.com"
-                  data-uk-icon="icon: twitter; ratio: 0.8"
-                  className="uk-icon-button twitter"
+                  href={APP.socials.github}
+                  data-uk-icon="icon: github; ratio: 0.8"
+                  className="uk-icon-button github"
                   target="_blank"
                 ></a>
               </div>
@@ -45,76 +43,49 @@ const FooterComponent = (_props) => {
           <div>
             <ul className="uk-list uk-text-small">
               <li>
-                <a className="uk-link-text" href="#">
-                  Presentations
-                </a>
-              </li>
-              <li>
-                <a className="uk-link-text" href="#">
-                  Professionals
-                </a>
-              </li>
-              <li>
-                <a className="uk-link-text" href="#">
-                  Stores
-                </a>
+                <Link className="uk-link-text" to={pathUrl.user.Courses}>
+                  {t('header.menus.courses')}
+                </Link>
               </li>
             </ul>
           </div>
+
           <div>
             <ul className="uk-list uk-text-small">
               <li>
-                <a className="uk-link-text" href="#">
-                  Webinars
-                </a>
+                <Link className="uk-link-text" to={pathUrl.user.Achievements}>
+                  {t('header.menus.achievements')}
+                </Link>
               </li>
               <li>
-                <a className="uk-link-text" href="#">
-                  Workshops
-                </a>
-              </li>
-              <li>
-                <a className="uk-link-text" href="#">
-                  Local Meetups
-                </a>
+                <Link className="uk-link-text" to={pathUrl.user.Activities}>
+                  {t('header.menus.activities')}
+                </Link>
               </li>
             </ul>
           </div>
+
           <div>
             <ul className="uk-list uk-text-small">
               <li>
-                <a className="uk-link-text" href="#">
-                  Our Initiatives
-                </a>
+                <Link className="uk-link-text" to={pathUrl.user.Tools}>
+                  {t('header.menus.tools')}
+                </Link>
               </li>
               <li>
-                <a className="uk-link-text" href="#">
-                  Giving Back
-                </a>
-              </li>
-              <li>
-                <a className="uk-link-text" href="#">
-                  Communities
-                </a>
+                <Link className="uk-link-text" to={pathUrl.user.Tools}>
+                  {t('header.menus.products')}
+                </Link>
               </li>
             </ul>
           </div>
+
           <div>
             <ul className="uk-list uk-text-small">
               <li>
-                <a className="uk-link-text" href="#">
-                  Contact Form
-                </a>
-              </li>
-              <li>
-                <a className="uk-link-text" href="#">
-                  Work With Us
-                </a>
-              </li>
-              <li>
-                <a className="uk-link-text" href="#">
-                  Visit Us
-                </a>
+                <Link className="uk-link-text" to={pathUrl.user.Contact}>
+                  {t('header.menus.contact')}
+                </Link>
               </li>
             </ul>
           </div>

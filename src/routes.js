@@ -7,5 +7,6 @@ export const pathUrl = {
     Achievements: '/achievements',
     Tools: '/tools',
     Contact: '/contact',
+    Products: '/products',
   },
 };

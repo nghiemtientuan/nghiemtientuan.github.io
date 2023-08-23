@@ -1,7 +1,7 @@
 import React from 'react';
 
-const HomePage = (_props) => {
-  return <div className="container">tuntun</div>;
+const AdsComponent = (_props) => {
+  return <div className="container">Ads</div>;
 };
 
-export default HomePage;
+export default AdsComponent;
