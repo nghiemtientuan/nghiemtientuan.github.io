@@ -49,6 +49,10 @@ const HeaderComponent = (_props) => {
       url: pathUrl.user.Contact,
       title: t('header.menus.contact'),
     },
+    {
+      url: pathUrl.user.Redirect,
+      title: t('header.menus.redirect'),
+    },
   ];
 
   // states
