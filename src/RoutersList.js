@@ -8,6 +8,8 @@ import { pathUrl } from './routes';
 import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
 import CoursesPage from './pages/CoursesPage';
+import RedirectPage from './pages/RedirectPage';
+import SingleRedirectPage from './pages/RedirectPage/single';
 
 const RoutersList = () => {
   return (
@@ -19,6 +21,10 @@ const RoutersList = () => {
         <Route path={pathUrl.user.Achievements} exact element={<></>} />
         <Route path={pathUrl.user.Tools} exact element={<></>} />
         <Route path={pathUrl.user.Contact} exact element={<></>} />
+
+        {/* Redirect page */}
+        <Route path={pathUrl.user.Redirect} exact element={<RedirectPage />} />
+        <Route path={`${pathUrl.user.Redirect}/:shorten`} element={<SingleRedirectPage />} />
 
         {/* Redirect to base if the page cannot be found */}
         <Route path="*" exact element={<NotFoundPage />} />

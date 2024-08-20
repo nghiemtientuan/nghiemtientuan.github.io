@@ -8,5 +8,6 @@ export const pathUrl = {
     Tools: '/tools',
     Contact: '/contact',
     Products: '/products',
+    Redirect: '/redirect',
   },
 };
